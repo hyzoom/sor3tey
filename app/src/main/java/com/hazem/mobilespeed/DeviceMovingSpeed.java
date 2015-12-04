@@ -6,9 +6,11 @@ package com.hazem.mobilespeed;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -39,8 +41,7 @@ public class DeviceMovingSpeed extends Activity {// implements Runnable
         FloatingActionButton myFab = (FloatingActionButton) findViewById(R.id.fab);
         myFab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-//                Toast.makeText(getBaseContext(), "HELLO", Toast.LENGTH_SHORT).show();
-//                takeScreenshot();
+                shotSound();
                 Bitmap bitmap = takeScreenshot();
                 saveBitmap(bitmap);
             }
@@ -106,6 +107,11 @@ public class DeviceMovingSpeed extends Activity {// implements Runnable
 //        shareIntent.setType("image/*");
 //        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 //        startActivity(Intent.createChooser(shareIntent, "Share images..."));
+    }
+
+    public void shotSound() {
+        MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.screenshot_sound);
+        mediaPlayer.start();
     }
 
 }
